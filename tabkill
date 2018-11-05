@@ -1,0 +1,55 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'thread'
+
+def eep
+  `mplayer #{ENV['HOME'] + '/.killsound'}`
+end
+
+def tabs
+  @_tabs ||= JSON.
+    parse(`curl -s localhost:9222/json`).
+    select { |t| t.fetch('url').start_with?('http') }.
+    select { |t| t.fetch('type') == 'page' }
+end
+
+def tabs_with_url(snippet)
+  tabs.select { |t| t.fetch('url') =~ /#{snippet}/ }
+end
+
+def tabs_named(snippet)
+  tabs.select { |t| t.fetch('title') =~ /#{snippet}/ }
+end
+
+def kill_tab(tab)
+  id = tab.fetch('id')
+  STDERR.puts("Killing tab [#{tab.fetch('title')}]")
+  `curl -s localhost:9222/json/close/#{id}`
+end
+
+def nag(msg)
+  `nag Killed tab #{msg}`
+end
+
+def main
+  names = ARGV
+  names.each do |name|
+    Thread.new {
+      puts "Looking for tabs named #{name}"
+      tabs = tabs_with_url(name)
+
+      if tabs.any?
+	tabs.each do |t|
+	  Thread.new{ kill_tab t }.join
+	end
+
+	Thread.new { nag name }.join
+
+	Thread.new { eep }.join
+      end
+    }.join
+  end
+end
+
+main
