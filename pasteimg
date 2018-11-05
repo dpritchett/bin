@@ -1,5 +1,8 @@
 #!/usr/bin/env python2
 
+# cloned from https://github.com/cas--/PasteImg/blob/master/pasteimg
+#  No rights claimed.
+
 import pygtk
 import gtk
 import os

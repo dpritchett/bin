@@ -1,5 +1,7 @@
 #!/bin/sh
 #Generated with love at Sat Oct 27 08:38:46 2018 by JetBrains Toolbox 1.8.3868 (May 25 2018)
 
+# starts intellij from the shell i guess
+
 "/home/dpritchett/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/181.5281.24/bin/idea.sh" "$@"
 

@@ -1,2 +1,3 @@
 #!/usr/bin/env sh
+# shell script for piping stuff to the clipboard, compare to pbcopy on osx
 xclip -sel clip $@

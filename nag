@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# allow me to pipe text to the gnome toaster 
+#  echo hello there | xargs nag
+
 WORDS=$@
 
 notify-send nag "🛑 ${WORDS} 🛑"

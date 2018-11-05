@@ -1,5 +1,10 @@
 #!/usr/bin/env ruby
 
+# Kill chrome tabs by name or URL wildcard.
+#   Depends on the DevTools API.
+#   Enable that by adding this to your chrome launch shortcuts:
+#     --remote-debugging-port=9222
+
 require 'json'
 require 'thread'
 

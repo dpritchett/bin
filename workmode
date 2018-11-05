@@ -3,7 +3,7 @@
 # uncomment to make me a noop
 test -f ~/.playmode && exit
 
-# kill any process with a name listed  in distractions.txt
+# kill any process with a name listed  in ~/.distracting_apps
 #cat ~/.distracting_apps | xargs -n1 pkill -e
 
 # kill any process with a name listed in ~/distracting_sites
